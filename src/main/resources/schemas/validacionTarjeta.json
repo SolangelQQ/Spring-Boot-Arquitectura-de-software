@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CreditCardPaymentRequest",
+    "description": "Schema for validating credit card payment requests",
+    "type": "object",
+    "properties": {
+      "card_number": {
+        "type": "string",
+        "pattern": "^\\d{16}$"
+      },
+      "cvv": {
+        "type": "string",
+        "pattern": "^\\d{3}$"
+      },
+      "expiration_date": {
+        "type": "string",
+        "pattern": "^(0[1-9]|1[0-2])/(\\d{2})$"
+      }
+    },
+    "required": ["card_number", "cvv", "expiration_date"]
+  }
+  

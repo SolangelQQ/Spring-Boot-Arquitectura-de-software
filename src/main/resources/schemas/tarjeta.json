@@ -1,0 +1,57 @@
+{
+    "api": {
+      "name": "Credit Card Payment API",
+      "description": "API para procesar pagos con tarjeta de crédito.",
+      "endpoint": "/api/payment",
+      "method": "POST",
+      "request": {
+        "description": "Cuerpo de la solicitud para procesar el pago.",
+        "properties": {
+          "card_number": {
+            "type": "string",
+            "description": "El número de la tarjeta de crédito.",
+            "pattern": "^\\d{16}$",
+            "required": true
+          },
+          "cvv": {
+            "type": "string",
+            "description": "El código de seguridad de la tarjeta.",
+            "pattern": "^\\d{3}$",
+            "required": true
+          },
+          "expiration_date": {
+            "type": "string",
+            "description": "La fecha de vencimiento de la tarjeta (MM/YY).",
+            "pattern": "^(0[1-9]|1[0-2])/(\\d{2})$",
+            "required": true
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Respuesta exitosa",
+          "properties": {
+            "statusCode": {
+              "type": "integer",
+              "description": "Código de estado de la respuesta.",
+              "enum": [0]
+            },
+            "message": {
+              "type": "string",
+              "description": "Mensaje descriptivo de la respuesta."
+            }
+          }
+        }
+      },
+      "example": {
+        "description": "Ejemplo de solicitud",
+        "code": "curl -X POST https://example.com/api/payment -H \"Content-Type: application/json\" -d '{\"card_number\": \"1234567890123456\", \"cvv\": \"123\", \"expiration_date\": \"12/24\"}'"
+      },
+      "notes": [
+        "Se espera que la fecha de vencimiento esté en el formato MM/YY.",
+        "El código de seguridad (CVV) debe tener exactamente 3 dígitos.",
+        "El número de tarjeta debe contener exactamente 16 dígitos."
+      ]
+    }
+  }
+  

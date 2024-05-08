@@ -1,0 +1,155 @@
+server:
+    port: 9090
+api:
+  responseCodes:
+    ok.description : OK
+    badRequest.description: Bad Request, invalid format of the request. See response message for more information
+    internalServer.description: Internal Server Error. Seee response message for more information
+springdoc:
+    swagger-ui.path: /openapi/swagger-ui.html
+    api-docs.path: /openapi/v3/api-docs
+    packagesToScan: com.ucb.product
+    pathsToMatch: /**
+sentry:
+  dsn: https://98a37cb11af9da4baeba5dfe8b2b7af9@o4507141733744640.ingest.us.sentry.io/4507141735645184
+   Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+   We recommend adjusting this value in production.
+  traces-sample-rate: 1.0
+#server:
+#  port: 9090
+#api:
+#  responseCodes:
+#    ok.description: OK
+#    badRequest.description: Bad Request, invalid format of the request. See response message for more information
+#    internalServer.description: Internal Server Error. See response message for more information
+#springdoc:
+#  swagger-ui.path: /openapi/swagger-ui.html
+#  api-docs.path: /openapi/v3/api-docs
+#  packagesToScan: com.ucb.product
+#  pathsToMatch: /**
+#sentry:
+#  dsn: https://98a37cb11af9da4baeba5dfe8b2b7af9@o4507141733744640.ingest.us.sentry.io/4507141735645184
+#  traces-sample-rate: 1.0
+#
+#paths:
+#  /login:
+#    post:
+#      summary: Iniciar sesión
+#      description: Permite a los usuarios iniciar sesión utilizando su dirección de correo electrónico y contraseña.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/LoginRequest'
+#      responses:
+#        '200':
+#          description: Inicio de sesión exitoso
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/LoginResponse'
+#        '400':
+#          description: Solicitud incorrecta
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        '401':
+#          description: No autorizado
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#  /payment:
+#    post:
+#      summary: Procesar pago con tarjeta de crédito
+#      description: Permite a los usuarios realizar un pago utilizando una tarjeta de crédito.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/PaymentRequest'
+#      responses:
+#        '200':
+#          description: Pago exitoso
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/SuccessResponse'
+#        '400':
+#          description: Solicitud incorrecta
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#        '401':
+#          description: No autorizado
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+#components:
+#  schemas:
+#    LoginRequest:
+#      type: object
+#      required:
+#        - email
+#        - password
+#      properties:
+#        email:
+#          type: string
+#          format: email
+#          description: La dirección de correo electrónico del usuario.
+#        password:
+#          type: string
+#          description: La contraseña del usuario.
+#    LoginResponse:
+#      type: object
+#      properties:
+#        token:
+#          type: string
+#          description: El token de acceso generado para la sesión.
+#        timestamp:
+#          type: string
+#          format: date-time
+#          description: La marca de tiempo de la sesión en formato ISO 8601.
+#    PaymentRequest:
+#      type: object
+#      required:
+#        - card_number
+#        - cvv
+#        - expiration_date
+#      properties:
+#        card_number:
+#          type: string
+#          description: El número de la tarjeta de crédito.
+#          pattern: '^\d{16}$'
+#        cvv:
+#          type: string
+#          description: El código de seguridad de la tarjeta.
+#          pattern: '^\d{3}$'
+#        expiration_date:
+#          type: string
+#          description: La fecha de vencimiento de la tarjeta (MM/YY).
+#          pattern: '^(0[1-9]|1[0-2])/(\\d{2})$'
+#    SuccessResponse:
+#      type: object
+#      properties:
+#        statusCode:
+#          type: integer
+#          description: Código de estado de la respuesta.
+#          enum: [0]
+#        message:
+#          type: string
+#          description: Mensaje descriptivo de la respuesta.
+#    Error:
+#      type: object
+#      properties:
+#        error:
+#          type: string
+#          description: El tipo de error.
+#        message:
+#          type: string
+#          description: Mensaje descriptivo del error.

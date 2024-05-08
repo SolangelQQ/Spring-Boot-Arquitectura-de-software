@@ -1,0 +1,75 @@
+{
+    "api": {
+      "name": "Login API",
+      "description": "API para permitir a los usuarios iniciar sesión en el sistema.",
+      "endpoint": "/api/login",
+      "method": "POST",
+      "request": {
+        "description": "Cuerpo de la solicitud para iniciar sesión.",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "La dirección de correo electrónico del usuario.",
+            "required": true
+          },
+          "password": {
+            "type": "string",
+            "description": "La contraseña del usuario.",
+            "required": true
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Respuesta exitosa",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "El token de acceso generado para la sesión."
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time",
+              "description": "La marca de tiempo de la sesión en formato ISO 8601."
+            }
+          }
+        },
+        "400": {
+          "description": "Solicitud incorrecta",
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "El tipo de error."
+            },
+            "message": {
+              "type": "string",
+              "description": "Mensaje descriptivo del error."
+            }
+          }
+        },
+        "401": {
+          "description": "No autorizado",
+          "properties": {
+            "error": {
+              "type": "string",
+              "description": "El tipo de error."
+            },
+            "message": {
+              "type": "string",
+              "description": "Mensaje descriptivo del error."
+            }
+          }
+        }
+      },
+      "example": {
+        "description": "Ejemplo de solicitud",
+        "code": "curl -X POST https://example.com/api/login -H \"Content-Type: application/json\" -d '{\"email\": \"user@example.com\", \"password\": \"secretpassword\"}'"
+      },
+      "notes": [
+        "El token de acceso devuelto puede ser utilizado para realizar solicitudes autenticadas a otras partes de la API.",
+        "La marca de tiempo proporciona información sobre cuándo se inició la sesión y puede ser útil para establecer políticas de expiración de sesión."
+      ]
+    }
+  }
+  
+  
